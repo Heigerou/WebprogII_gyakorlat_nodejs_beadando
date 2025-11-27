@@ -1,0 +1,51 @@
+<html>
+  <head>
+<meta charset="utf-8">
+    <title>Admin játszótere</title>
+    <style>
+      .admin-table {
+    width: 80%;
+    margin: 2rem auto; 
+    border-collapse: collapse;
+    text-align: center; 
+  }
+
+  .admin-table th, .admin-table td {
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+  }
+
+  .admin-table thead {
+    background-color: white;
+    color:black;
+  }
+
+  .admin-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+    </style>
+  </head>
+  <body>
+    <h2>Admin</h2>
+<p>Csak admin jogosultsággal érhető el.</p>
+
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>E-mail</th>
+      <th>Felhasználó típusa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.email %></td>
+        <td><%= u.role %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+  </body>
+</html>

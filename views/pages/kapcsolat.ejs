@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kapcsolatok</title>
+    <style>
+      
+       h2{
+        text-align: center;
+       }
+       p{
+        text-align: center;
+       }
+       form {
+        display: flex;
+        flex-direction: column;  
+        align-items: center;      
+        gap: 1rem;                
+        max-width: 400px;         
+        margin: 2rem auto;        
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;   
+        width: 100%;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      input, textarea {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h2>Kapcsolat</h2>
+<form action="<%= basePath %>/messages" method="post">
+  <label>Név <input name="name" required></label>
+  <label>E-mail <input name="email" type="email" required></label>
+  <label>Üzenet <textarea name="content" required></textarea></label>
+  <button>Küldés</button>
+  <p>Az üzenetek adatbzisba kerülnek, és csak a <strong>bejelentkezett</strong> felhasznlók látják az üzenetek menüben.</p>
+</form>
+  </body>
+</html>
