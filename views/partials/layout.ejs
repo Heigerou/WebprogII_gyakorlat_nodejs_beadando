@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= (typeof locals.title !== 'undefined' && locals.title) ? locals.title : 'Jani@Szabi Kft.' %></title>
+  <link rel="stylesheet" href="<%= basePath %>/assets/css/style.css">
+ 
+</head>
+<body>
+  <header class="site-header"><h1>Jani&Szabi Kft.</h1></header>
+  <nav class="nav">
+    <a href="<%= basePath %>/">Főldal</a>
+    <a href="<%= basePath %>/munkalapok">Adatbázis</a>
+    <a href="<%= basePath %>/kapcsolat">Kapcsolat</a>
+    <a href="<%= basePath %>/szerelok">CRUD</a>
+    <span class="nav-spacer"></span>
+    <% if (currentUser) { %>
+      <a href="<%= basePath %>/messages">Üzenetek</a>
+      <% if (currentUser.role==='admin') { %><a href="<%= basePath %>/admin">Admin</a><% } %>
+      <form action="<%= basePath %>/auth/logout" method="post" class="nav-logout">
+        <button>Kijelentkezés</button>
+      </form>
+    <% } else { %>
+      <a style="margin-left:auto" href="<%= basePath %>/auth/login">Bejelentkezés</a>
+      <a href="<%= basePath %>/auth/register">Regisztráció</a>
+    <% } %>
+  </nav>
+  <main class="container">
+    <% if (success && success.length) { %><div class="flash success"><%= success %></div><% } %>
+    <% if (error && error.length) { %><div class="flash error"><%= error %></div><% } %>
+    <%- body %>
+  </main>
+</body>
+</html>

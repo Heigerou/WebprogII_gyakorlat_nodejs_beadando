@@ -1,0 +1,20 @@
+<h2>Szerelők (CRUD)</h2>
+<p><a href="<%= basePath %>/szerelok/new">új szerelő</a></p>
+<table>
+  <thead><tr><th>Aonosító</th><th>Név</th><th>Kezdett</th><th>Műveletek</th></tr></thead>
+  <tbody>
+    <% szerelok.forEach(s => { %>
+      <tr>
+        <td><%= s.az %></td>
+        <td><%= s.nev %></td>
+        <td><%= s.kezdev %></td>
+        <td>
+          <% if (currentUser && currentUser.role === "admin") { %><a href="<%= basePath %>/szerelok/<%= s.az %>/edit">Szerkesztés</a>
+          <form action="<%= basePath %>/szerelok/<%= s.az %>?_method=DELETE" method="post" style="display:inline">
+            <button>Törlés</button>
+          </form><% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

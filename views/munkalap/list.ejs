@@ -1,0 +1,43 @@
+<h2>Munkalapok – 3 tábla adatai</h2>
+
+<form method="get" style="margin-bottom:1rem">
+  <label>Mutasson ennyit:
+    <select name="limit" onchange="this.form.submit()">
+      <option value="20" <%= limit===20 ? 'selected' : '' %>>20</option>
+      <option value="50" <%= limit===50 ? 'selected' : '' %>>50</option>
+      <option value="100" <%= limit===100 ? 'selected' : '' %>>100</option>
+      <option value="200" <%= limit===200 ? 'selected' : '' %>>200</option>
+    </select>
+  </label>
+  <input type="hidden" name="page" value="1" />
+  <noscript><button type="submit">Alkalmaz</button></noscript>
+</form>
+
+<p>Összesen: <strong><%= count %></strong> rekord.
+   Jelenleg: <strong><%= offset + 1 %></strong>–<strong><%= offset + munkalapok.length %></strong>.</p>
+
+<table>
+  <thead>
+    <tr><th>Bevétel dátuma</th><th>Javítás dátuma</th><th>Hely</th><th>Szerelő</th><th>Munkaóra</th><th>Anyagár (Ft)</th></tr>
+  </thead>
+  <tbody>
+    <% munkalapok.forEach(m => { %>
+      <tr>
+        <td><%= m.bedatum %></td>
+        <td><%= m.javdatum %></td>
+        <td><%= m.Hely ? (m.Hely.telepules + ', ' + m.Hely.utca) : '-' %></td>
+        <td><%= m.Szerelo ? m.Szerelo.nev : '-' %></td>
+        <td><%= m.munkaora %></td>
+        <td><%= m.anyagar %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<div style="display:flex; gap:.5rem; align-items:center; margin-top:1rem;">
+  <a href="?limit=<%= limit %>&page=1"><button <%= page===1 ? 'disabled' : '' %>>Első</button></a>
+  <a href="?limit=<%= limit %>&page=<%= Math.max(1, page-1) %>"><button <%= page===1 ? 'disabled' : '' %>>Előző</button></a>
+  <span>Oldal <strong><%= page %></strong> / <strong><%= totalPages %></strong></span>
+  <a href="?limit=<%= limit %>&page=<%= Math.min(totalPages, page+1) %>"><button <%= page===totalPages ? 'disabled' : '' %>>Következő</button></a>
+  <a href="?limit=<%= limit %>&page=<%= totalPages %>"><button <%= page===totalPages ? 'disabled' : '' %>>Utolsó</button></a>
+</div>

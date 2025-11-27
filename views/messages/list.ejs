@@ -1,0 +1,21 @@
+<h2>Beérkezett üzenetek</h2>
+<table>
+  <thead><tr><th>Nv</th><th>E-mail</th><th>Üzenet</th><th>Küldés ideje</th></tr></thead>
+  <tbody>
+    <% messages.forEach(m => { %>
+      <tr>
+        <td><%= m.name %></td>
+        <td><%= m.email %></td>
+        <td><%= m.content %></td>
+        <td><%= new Date(m.sentAt).toLocaleString('hu-HU') %></td>
+        <td>
+          <% if (currentUser && currentUser.role === 'admin') { %>
+          <form action="<%= basePath %>/messages/<%= m.id %>?_method=DELETE" method="post" onsubmit="return confirm('Biztos törlöd?')">
+            <button>Törlés</button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
