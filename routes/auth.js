@@ -6,7 +6,7 @@ import { User } from '../models/index.js';
 const router = Router();
 
 
-const BASE_PATH = '/app161';
+const BASE_PATH = '/app152';
 
 router.get('/register', (req, res) =>
   res.render('auth/register')
